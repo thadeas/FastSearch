@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CmdParser">
+      <UniqueIdentifier>{8f061519-5f05-44c7-a08e-4799c4a849a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{f67ee074-e4b9-4301-bfd3-65ec62e94c1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileManager">
+      <UniqueIdentifier>{60ff8ea9-df5c-4404-a6dd-ca6c94f47b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FsPathWrapper">
+      <UniqueIdentifier>{b8089fe9-4b5d-4368-a6de-0d4a5ed400df}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdparser.h">
+      <Filter>CmdParser</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdparser_intf.h">
+      <Filter>CmdParser</Filter>
+    </ClInclude>
+    <ClInclude Include="errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filemanager_intf.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="filemanager.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="fspathwrapper_intf.h">
+      <Filter>FsPathWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="fspathwrapper.h">
+      <Filter>FsPathWrapper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="cmdparser.cpp">
+      <Filter>CmdParser</Filter>
+    </ClCompile>
+    <ClCompile Include="filemanager.cpp">
+      <Filter>FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="fspathwrapper.cpp">
+      <Filter>FsPathWrapper</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
