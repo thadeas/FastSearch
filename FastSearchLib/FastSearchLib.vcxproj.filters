@@ -25,6 +25,9 @@
     <Filter Include="FsPathWrapper">
       <UniqueIdentifier>{b8089fe9-4b5d-4368-a6de-0d4a5ed400df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SearchEngine">
+      <UniqueIdentifier>{7de2f45f-64f7-44f9-81e5-eb0411b394d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -63,6 +66,12 @@
     <ClInclude Include="fspathwrapper.h">
       <Filter>FsPathWrapper</Filter>
     </ClInclude>
+    <ClInclude Include="searchengine_intf.h">
+      <Filter>SearchEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="searchengine.h">
+      <Filter>SearchEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -79,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="fspathwrapper.cpp">
       <Filter>FsPathWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="searchengine.cpp">
+      <Filter>SearchEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

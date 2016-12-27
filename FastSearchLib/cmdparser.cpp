@@ -12,10 +12,15 @@ void CCmdParser::Initialize(int argc, char* argv[])
 {
 	// fail input with less arguments
 	if (argc < ARGUMENT_COUNT) {
-		throw invalid_argument("Received invalid number of arguments.");
+		throw invalid_argument("Received invalid number of arguments from command line.");
 	}
+
 	m_searchPath = argv[ARGUMENT_PATH_INDEX];
 	m_pattern = argv[ARGUMENT_PATTERN_INDEX];
+	// check params
+	if (m_pattern.size() > MAXIMUM_PATTERN_LENGTH) {
+		throw invalid_argument("Pattern is longer than expected.");
+	}
 }
 
 string CCmdParser::GetSearchPath()
