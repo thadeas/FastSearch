@@ -13,17 +13,27 @@ void CSearchEngine::Search(const wstring & filePath)
 	try {
 		ifstream file;
 		file.open(filePath, ios::binary | ios::in);
+		if (file.is_open()) {
 
-		// read from file and create separate chunks
-		vector<char> buffer(MAX_CHUNK_SIZE);
-		while (file.read(&buffer[0], buffer.size())) {
-			shared_ptr<IFileChunk> spFileChunk;
-			CreateFileChunk(spFileChunk, buffer, (size_t)file.gcount());
+			// read from file and create separate chunks
+			vector<char> buffer(MAX_CHUNK_SIZE);
+			// ToDo: create chunk pool - released chunk can be used again
+			shared_ptr<IFileChunk> spFileChunkPrev, spFileChunkCurrent, spFileChunkNext;
+			while (!file.eof()) {
+				auto currentPos = file.tellg();
+				file.read(&buffer[0], buffer.size());
 
-			///do with buffer
+				// this method move chunks shared pointers from next -> current -> prev -> delete()
+				spFileChunkPrev = spFileChunkCurrent;
+				spFileChunkCurrent = spFileChunkNext;
+
+				CreateFileChunk(spFileChunkNext, buffer, (size_t)file.gcount(), (size_t)currentPos);
+			}
+			if (spFileChunkNext) {
+				// process th 
+			}
+			file.close();
 		}
-
-		file.close();
 
 	}
 	catch (...) {

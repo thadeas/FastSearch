@@ -12,8 +12,9 @@ public:
 
 	// Initializes CFileChunk
 	// \param[in] buffer Buffer loaded from input file (part of the file)
-	// \param[in] bufferSize Real size of the buffer.
-	void Initialize(vector<char> & buffer, size_t bufferSize);
+	// \param[in] bufferSize Real size of the buffer (read from file).
+	// \param[in] bufferOffset Absolute start position of buffer in the file.
+	void Initialize(vector<char> & buffer, size_t bufferSize, size_t bufferOffset);
 
 public:
 	// \copydoc IFileChunk::Size
@@ -24,7 +25,8 @@ public:
 
 protected:
 	// members
-	size_t m_bufferSize;     // buffer length (read form input)
+	size_t m_bufferOffset;   // offset of buffer in the file
+	size_t m_bufferSize;     // buffer length
 	vector<char> m_buffer;   // vector of bytes from input stream
 
 public:
@@ -35,7 +37,7 @@ public:
 		param[in/out] buffer input buffer for chunk. WARNING - input buffer is swapped, because it is faster.
 		param[in] bufferSize real size of input buffer
 		*/
-		virtual void CreateFileChunk(shared_ptr<IFileChunk> & spFileChunk, vector<char> & buffer, const size_t bufferSize);
+		virtual void CreateFileChunk(shared_ptr<IFileChunk> & spFileChunk, vector<char> & buffer, const size_t bufferSize, size_t bufferOffset);
 	};
 
 };
