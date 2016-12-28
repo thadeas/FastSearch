@@ -27,7 +27,7 @@ void CFileManager::Initialize(const wstring & path)
 
 bool CFileManager::GetNextFile(wstring & path)
 {
-	if (m_pathsIndex < path.size()) {
+	if (m_pathsIndex < m_paths.size()) {
 		path.swap(m_paths[m_pathsIndex++]);
 		return true;
 	}

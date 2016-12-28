@@ -23,6 +23,8 @@ void CSearchEngine::Search(const wstring & filePath)
 			///do with buffer
 		}
 
+		file.close();
+
 	}
 	catch (...) {
 		// ToDo: invalid operation on file
