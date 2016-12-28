@@ -136,6 +136,9 @@
     <ClInclude Include="filemanager_intf.h" />
     <ClInclude Include="fspathwrapper.h" />
     <ClInclude Include="fspathwrapper_intf.h" />
+    <ClInclude Include="kmplps.h" />
+    <ClInclude Include="kmpsearch.h" />
+    <ClInclude Include="kmpsearch_intf.h" />
     <ClInclude Include="searchengine.h" />
     <ClInclude Include="searchengine_intf.h" />
     <ClInclude Include="stdafx.h" />
@@ -148,6 +151,9 @@
     <ClCompile Include="filechunk.cpp" />
     <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="fspathwrapper.cpp" />
+    <ClCompile Include="kmplps.cpp" />
+    <ClCompile Include="kmplps_intf.h" />
+    <ClCompile Include="kmpsearch.cpp" />
     <ClCompile Include="searchengine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

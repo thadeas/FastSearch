@@ -31,6 +31,9 @@
     <Filter Include="FileChunk">
       <UniqueIdentifier>{11f29a3e-1213-4ae7-894b-979165849104}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KmpSearch">
+      <UniqueIdentifier>{64e442e2-803b-45ab-8355-69c93e594410}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -81,6 +84,15 @@
     <ClInclude Include="filechunk_intf.h">
       <Filter>FileChunk</Filter>
     </ClInclude>
+    <ClInclude Include="kmpsearch.h">
+      <Filter>KmpSearch</Filter>
+    </ClInclude>
+    <ClInclude Include="kmpsearch_intf.h">
+      <Filter>KmpSearch</Filter>
+    </ClInclude>
+    <ClInclude Include="kmplps.h">
+      <Filter>KmpSearch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -103,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="filechunk.cpp">
       <Filter>FileChunk</Filter>
+    </ClCompile>
+    <ClCompile Include="kmpsearch.cpp">
+      <Filter>KmpSearch</Filter>
+    </ClCompile>
+    <ClCompile Include="kmplps_intf.h">
+      <Filter>KmpSearch</Filter>
+    </ClCompile>
+    <ClCompile Include="kmplps.cpp">
+      <Filter>KmpSearch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
