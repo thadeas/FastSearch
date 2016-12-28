@@ -28,6 +28,9 @@
     <Filter Include="SearchEngine">
       <UniqueIdentifier>{7de2f45f-64f7-44f9-81e5-eb0411b394d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FileChunk">
+      <UniqueIdentifier>{11f29a3e-1213-4ae7-894b-979165849104}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,6 +75,12 @@
     <ClInclude Include="searchengine.h">
       <Filter>SearchEngine</Filter>
     </ClInclude>
+    <ClInclude Include="filechunk.h">
+      <Filter>FileChunk</Filter>
+    </ClInclude>
+    <ClInclude Include="filechunk_intf.h">
+      <Filter>FileChunk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="searchengine.cpp">
       <Filter>SearchEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="filechunk.cpp">
+      <Filter>FileChunk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

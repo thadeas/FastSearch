@@ -8,7 +8,6 @@ public:
 
 	/* Search for all patterns in file
 	   param[in] filePath File to be searched.
-	   param[in] pattern Searched string.
 	*/
-	virtual void Search(const string & filePath, const string & pattern) = 0;
+	virtual void Search(const wstring & filePath) = 0;
 };

@@ -15,7 +15,7 @@ void CCmdParser::Initialize(int argc, char* argv[])
 		throw invalid_argument("Received invalid number of arguments from command line.");
 	}
 
-	m_searchPath = argv[ARGUMENT_PATH_INDEX];
+	m_searchPath = string_to_wstring(argv[ARGUMENT_PATH_INDEX]);
 	m_pattern = argv[ARGUMENT_PATTERN_INDEX];
 	// check params
 	if (m_pattern.size() > MAXIMUM_PATTERN_LENGTH) {
@@ -23,7 +23,7 @@ void CCmdParser::Initialize(int argc, char* argv[])
 	}
 }
 
-string CCmdParser::GetSearchPath()
+wstring CCmdParser::GetSearchPath()
 {
 	return m_searchPath;
 }

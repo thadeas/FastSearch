@@ -10,7 +10,7 @@ public:
 
 public:
 	// \copydoc ICmdParser::GetSearchPath
-	string GetSearchPath() override;
+	wstring GetSearchPath() override;
 
 	// \copydoc ICmdParser::GetPattern
 	string GetPattern() override;
@@ -27,6 +27,6 @@ public:
 	};
 
 private:
-	std::string m_searchPath;    // file or directory to be searched
-	std::string m_pattern;       // search pattern 
+	wstring m_searchPath;    // file or directory to be searched
+	string m_pattern;       // search pattern 
 };

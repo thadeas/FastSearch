@@ -130,6 +130,8 @@
     <ClInclude Include="cmdparser.h" />
     <ClInclude Include="cmdparser_intf.h" />
     <ClInclude Include="errors.h" />
+    <ClInclude Include="filechunk.h" />
+    <ClInclude Include="filechunk_intf.h" />
     <ClInclude Include="filemanager.h" />
     <ClInclude Include="filemanager_intf.h" />
     <ClInclude Include="fspathwrapper.h" />
@@ -143,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="cmdparser.cpp" />
+    <ClCompile Include="filechunk.cpp" />
     <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="fspathwrapper.cpp" />
     <ClCompile Include="searchengine.cpp" />

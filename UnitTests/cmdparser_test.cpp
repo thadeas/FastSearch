@@ -81,7 +81,7 @@ namespace CCmdParser_unitTest
 			cmdParser.Initialize(argc, argv);
 
 			// result
-			Assert::AreEqual(cmdParser.GetSearchPath().c_str(), "path", "Path is parsed.", LINE_INFO());
+			Assert::AreEqual(cmdParser.GetSearchPath().c_str(), L"path", "Path is parsed.", LINE_INFO());
 			Assert::AreEqual(cmdParser.GetPattern().c_str(), "pattern", "Patten is parsed.", LINE_INFO());
 		}
 
@@ -98,7 +98,7 @@ namespace CCmdParser_unitTest
 			cmdParser.Initialize(argc, argv);
 
 			// result
-			Assert::AreEqual(cmdParser.GetSearchPath().c_str(), "path", "Path is parsed.", LINE_INFO());
+			Assert::AreEqual(cmdParser.GetSearchPath().c_str(), L"path", "Path is parsed.", LINE_INFO());
 			Assert::AreEqual(cmdParser.GetPattern().c_str(), TEXT_WITH_128_CHARS, "Patten is parsed.", LINE_INFO());
 		}
 

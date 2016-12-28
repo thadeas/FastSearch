@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "cmdparser.h"
+#include "filemanager.h"
+#include "searchengine.h"
 
 using namespace std;
 
@@ -9,6 +11,8 @@ Main class for fast search application
 */
 class CApplication
 	: protected CCmdParser::Factory
+	, protected CFileManager::Factory
+	, protected CSearchEngine::Factory
 {
 public:
 
