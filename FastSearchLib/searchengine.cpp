@@ -11,14 +11,28 @@ void CSearchEngine::Initialize(const string & pattern)
 	m_lps = spKmpLps->Compute(pattern);
 }
 
+wstring CSearchEngine::GetFileName(const wstring& filePath)
+{
+	// string filePathStr = wstring_to_string(path);
+	size_t index = filePath.rfind(PATH_SEPARATOR, filePath.size());
+	if (index != wstring::npos) {
+		return filePath.substr(index + 1, filePath.size() - index);
+	}
+	else {
+		return filePath;
+	}
+}
+
 void CSearchEngine::Search(const wstring & filePath)
 {
-	string filePathOutput = wstring_to_string(filePath);
 	try {
 		ifstream file;
 		file.open(filePath, ios::binary | ios::in);
 		if (file.is_open()) {
+			// zero base fill output
+			wcout.fill(L'0');
 
+			wstring fileName = GetFileName(filePath);
 			// read from file and create separate chunks
 			vector<char> buffer(MAX_CHUNK_SIZE);
 			// ToDo: create chunk pool - released chunk can be used again
@@ -26,7 +40,6 @@ void CSearchEngine::Search(const wstring & filePath)
 			while (!file.eof()) {
 				auto currentPos = file.tellg();
 				file.read(&buffer[0], buffer.size());
-
 				// this method move chunks shared pointers from next -> current -> prev -> delete()
 				spFileChunkPrev = spFileChunkCurrent;
 				spFileChunkCurrent = spFileChunkNext;
@@ -40,7 +53,8 @@ void CSearchEngine::Search(const wstring & filePath)
 					CreateKmpSearch(spKmpSearch, m_pattern, m_lps, spBuffer);
 					IKmpSearch::TSearchResults searchResults = spKmpSearch->Run();
 					for (const auto & result : searchResults) {
-						cout << filePathOutput << "(" << result.position << "): " << result.prefix << "..." << result.sufix << "\n";
+						wcout << fileName << L"(" << setw(10) << result.position << L"): "
+							<< string_to_wstring(result.prefix) << L"..." << string_to_wstring(result.sufix) << L"\n";
 					}
 				}
 			}

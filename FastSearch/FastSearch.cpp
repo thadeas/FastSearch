@@ -15,9 +15,12 @@ int main(int argc, char* argv[])
 		auto_ptr<CApplication> spApplication (new CApplication);
 		spApplication->Run(argc, argv);
 	}
+	catch (std::exception& e) {
+		cout << "ERROR: " << e.what();
+	}
 	catch (...) {
 		// operation failed
-		cout << "ERROR: Fast search failed.\n";
+		cout << "ERROR: Fast search failed from unknown reason.";
 		return EXIT_FAILURE;
 	}
 	

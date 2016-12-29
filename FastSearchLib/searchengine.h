@@ -22,6 +22,10 @@ public:
 	void Search(const wstring & filePath) override;
 
 protected:
+	// get full path to the file and separate file name (also it coverts wstring to string)
+	wstring GetFileName(const wstring& filePath);
+
+protected:
 	string m_pattern;    // pattern to be searched
 	TKmpLps m_lps;       // preprocessed lps in KMP algorithm search
 

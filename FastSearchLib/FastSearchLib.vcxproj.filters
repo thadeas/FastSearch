@@ -42,9 +42,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="application.h">
-      <Filter>Application</Filter>
-    </ClInclude>
     <ClInclude Include="cmdparser.h">
       <Filter>CmdParser</Filter>
     </ClInclude>
@@ -96,13 +93,13 @@
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="application.cpp">
-      <Filter>Application</Filter>
     </ClCompile>
     <ClCompile Include="cmdparser.cpp">
       <Filter>CmdParser</Filter>
@@ -124,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="chunkwrapper.cpp">
       <Filter>FileChunk</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>Application</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

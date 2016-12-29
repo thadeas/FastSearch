@@ -13,15 +13,22 @@ CFileManager::CFileManager()
 
 void CFileManager::Initialize(const wstring & path)
 {
-	if (PathFileExists(path.c_str())) {
-		// add file to the output list
-		m_paths.push_back(path);
+	if (!PathFileExists(path.c_str())) {
+		stringstream message;
+		message << "Received invalid path (" << wstring_to_string(path) << ").\n";
+		throw invalid_argument(message.str());
 	}
 	else {
-		// create directory path
-		GetSubdirsRecursive(m_paths, path, wstring());
+		DWORD atributes = GetFileAttributes(path.c_str());
+		if (atributes & FILE_ATTRIBUTE_DIRECTORY) {
+			// create directory path
+			GetSubdirsRecursive(m_paths, path, wstring());
+		}
+		else {
+			// add file to the output list
+			m_paths.push_back(path);
+		}
 	}
-	
 	m_pathsIndex = 0;
 }
 
@@ -56,10 +63,13 @@ void CFileManager::GetSubdirs(vector<wstring>& output, const wstring& path)
 		// ToDo Invalid path error.
 	} else {
 		do {
-			if ((findfiledata.dwFileAttributes | FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY
-				&& (findfiledata.cFileName[0] != '.'))
-			{
-				output.push_back(findfiledata.cFileName);
+			if (findfiledata.cFileName[0] != L'.') {
+				if (findfiledata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+					output.push_back(findfiledata.cFileName);
+				}
+				else {
+					m_paths.push_back(path + PATH_SEPARATOR + findfiledata.cFileName);
+				}
 			}
 		} while (FindNextFile(hFind, &findfiledata) != 0);
 	}
