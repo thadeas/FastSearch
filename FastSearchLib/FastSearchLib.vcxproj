@@ -137,6 +137,7 @@
     <ClInclude Include="fspathwrapper.h" />
     <ClInclude Include="fspathwrapper_intf.h" />
     <ClInclude Include="kmplps.h" />
+    <ClInclude Include="kmplps_intf.h" />
     <ClInclude Include="kmpsearch.h" />
     <ClInclude Include="kmpsearch_intf.h" />
     <ClInclude Include="searchengine.h" />
@@ -152,7 +153,6 @@
     <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="fspathwrapper.cpp" />
     <ClCompile Include="kmplps.cpp" />
-    <ClCompile Include="kmplps_intf.h" />
     <ClCompile Include="kmpsearch.cpp" />
     <ClCompile Include="searchengine.cpp" />
     <ClCompile Include="stdafx.cpp">

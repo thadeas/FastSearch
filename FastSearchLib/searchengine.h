@@ -2,10 +2,12 @@
 #include "stdafx.h"
 #include "searchengine_intf.h"
 #include "filechunk.h"
+#include "kmplps.h"
 
 class CSearchEngine 
 	: public ISearchEngine
 	, protected CFileChunk::Factory
+	, protected CKmpLps::Factory
 {
 public:
 	// Initialize search engine class
@@ -17,6 +19,7 @@ public:
 
 protected:
 	string m_pattern;    // pattern to be searched
+	TKmpLps m_lps;       // preprocessed lps in KMP algorithm search
 
 public:
 	// this struct is used for creating object.

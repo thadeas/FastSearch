@@ -5,7 +5,8 @@ using namespace std;
 
 TKmpLps CKmpLps::Compute(const string & pattern)
 {
-	TKmpLps lps;
+	// create lps[] that will hold the longest prefix suffix
+	TKmpLps lps(pattern.size(), 0);
 
 	// length of the previous longest prefix suffix
 	size_t len = 0;
@@ -37,3 +38,8 @@ TKmpLps CKmpLps::Compute(const string & pattern)
 	return lps;
 }
 
+void CKmpLps::Factory::CreateKmpLps(shared_ptr<IKmpLps> & spKmpLps)
+{
+	shared_ptr<CKmpLps> spImpl = make_shared<CKmpLps>();
+	spKmpLps = spImpl;
+}

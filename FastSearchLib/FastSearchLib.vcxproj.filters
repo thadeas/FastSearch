@@ -93,6 +93,9 @@
     <ClInclude Include="kmplps.h">
       <Filter>KmpSearch</Filter>
     </ClInclude>
+    <ClInclude Include="kmplps_intf.h">
+      <Filter>KmpSearch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -117,9 +120,6 @@
       <Filter>FileChunk</Filter>
     </ClCompile>
     <ClCompile Include="kmpsearch.cpp">
-      <Filter>KmpSearch</Filter>
-    </ClCompile>
-    <ClCompile Include="kmplps_intf.h">
       <Filter>KmpSearch</Filter>
     </ClCompile>
     <ClCompile Include="kmplps.cpp">

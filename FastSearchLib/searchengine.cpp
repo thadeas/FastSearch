@@ -6,6 +6,9 @@ using namespace std;
 void CSearchEngine::Initialize(const string & pattern)
 {
 	m_pattern = pattern;
+	shared_ptr<IKmpLps> spKmpLps;
+	CreateKmpLps(spKmpLps);
+	m_lps = spKmpLps->Compute(pattern);
 }
 
 void CSearchEngine::Search(const wstring & filePath)
