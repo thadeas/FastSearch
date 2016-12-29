@@ -29,7 +29,7 @@ namespace CCmdParser_unitTest
 					CCmdParser cmdParser;
 					cmdParser.Initialize(paramCount, argv);
 
-					_swprintf(message, L"No exception for input %i", paramCount);
+					_swprintf(message, L"No exception for input %i", (int)paramCount);
 					Assert::Fail(message, LINE_INFO());
 				}
 				catch (std::invalid_argument ex)
@@ -38,7 +38,7 @@ namespace CCmdParser_unitTest
 				}
 				catch (...)
 				{
-					_swprintf(message, L"Incorrect exception for %i", paramCount);
+					_swprintf(message, L"Incorrect exception for %i", (int)paramCount);
 					Assert::Fail(message, LINE_INFO());
 				}
 			}
@@ -57,7 +57,7 @@ namespace CCmdParser_unitTest
 				CCmdParser cmdParser;
 				cmdParser.Initialize(argc, argv);
 
-				_swprintf(message, L"No exception for input with %i chars", patternLen);
+				_swprintf(message, L"No exception for input with %i chars", (int)patternLen);
 				Assert::Fail(message, LINE_INFO());
 			}
 			catch (std::invalid_argument ex)
@@ -65,7 +65,7 @@ namespace CCmdParser_unitTest
 			}
 			catch (...)
 			{
-				_swprintf(message, L"Incorrect exception for input with %i chars.", patternLen);
+				_swprintf(message, L"Incorrect exception for input with %i chars.", (int)patternLen);
 				Assert::Fail(message, LINE_INFO());
 			}
 		}

@@ -17,11 +17,14 @@ public:
 	void Initialize(vector<char> & buffer, size_t bufferSize, size_t bufferOffset);
 
 public:
+	// \copydoc IFileChunk::FileOffset
+	size_t FileOffset() const override;
+
 	// \copydoc IFileChunk::Size
-	size_t Size() override;
+	size_t Size() const override;
 
 	// \copydoc IFileChunk::operator[]
-	char operator[] (size_t index) override;
+	char operator[] (long index) const override;
 
 protected:
 	// members
@@ -37,7 +40,7 @@ public:
 		param[in/out] buffer input buffer for chunk. WARNING - input buffer is swapped, because it is faster.
 		param[in] bufferSize real size of input buffer
 		*/
-		virtual void CreateFileChunk(shared_ptr<IFileChunk> & spFileChunk, vector<char> & buffer, const size_t bufferSize, size_t bufferOffset);
+		virtual void CreateFileChunk(shared_ptr<IFileChunk> & spFileChunk, vector<char> & buffer, size_t bufferSize, size_t bufferOffset);
 	};
 
 };

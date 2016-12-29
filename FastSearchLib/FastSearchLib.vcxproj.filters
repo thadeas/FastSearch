@@ -22,9 +22,6 @@
     <Filter Include="FileManager">
       <UniqueIdentifier>{60ff8ea9-df5c-4404-a6dd-ca6c94f47b2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FsPathWrapper">
-      <UniqueIdentifier>{b8089fe9-4b5d-4368-a6de-0d4a5ed400df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SearchEngine">
       <UniqueIdentifier>{7de2f45f-64f7-44f9-81e5-eb0411b394d9}</UniqueIdentifier>
     </Filter>
@@ -66,12 +63,6 @@
     <ClInclude Include="filemanager.h">
       <Filter>FileManager</Filter>
     </ClInclude>
-    <ClInclude Include="fspathwrapper_intf.h">
-      <Filter>FsPathWrapper</Filter>
-    </ClInclude>
-    <ClInclude Include="fspathwrapper.h">
-      <Filter>FsPathWrapper</Filter>
-    </ClInclude>
     <ClInclude Include="searchengine_intf.h">
       <Filter>SearchEngine</Filter>
     </ClInclude>
@@ -96,6 +87,15 @@
     <ClInclude Include="kmplps_intf.h">
       <Filter>KmpSearch</Filter>
     </ClInclude>
+    <ClInclude Include="chunkwrapper.h">
+      <Filter>FileChunk</Filter>
+    </ClInclude>
+    <ClInclude Include="chunkwrapper_intf.h">
+      <Filter>FileChunk</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -110,9 +110,6 @@
     <ClCompile Include="filemanager.cpp">
       <Filter>FileManager</Filter>
     </ClCompile>
-    <ClCompile Include="fspathwrapper.cpp">
-      <Filter>FsPathWrapper</Filter>
-    </ClCompile>
     <ClCompile Include="searchengine.cpp">
       <Filter>SearchEngine</Filter>
     </ClCompile>
@@ -124,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="kmplps.cpp">
       <Filter>KmpSearch</Filter>
+    </ClCompile>
+    <ClCompile Include="chunkwrapper.cpp">
+      <Filter>FileChunk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

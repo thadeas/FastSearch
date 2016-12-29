@@ -13,6 +13,7 @@ void CSearchEngine::Initialize(const string & pattern)
 
 void CSearchEngine::Search(const wstring & filePath)
 {
+	string filePathOutput = wstring_to_string(filePath);
 	try {
 		ifstream file;
 		file.open(filePath, ios::binary | ios::in);
@@ -31,6 +32,17 @@ void CSearchEngine::Search(const wstring & filePath)
 				spFileChunkCurrent = spFileChunkNext;
 
 				CreateFileChunk(spFileChunkNext, buffer, (size_t)file.gcount(), (size_t)currentPos);
+
+				if (spFileChunkCurrent) {
+					shared_ptr<IChunkWrapper> spBuffer;
+					CreateChunkWrapper(spBuffer, spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
+					shared_ptr<IKmpSearch> spKmpSearch;
+					CreateKmpSearch(spKmpSearch, m_pattern, m_lps, spBuffer);
+					IKmpSearch::TSearchResults searchResults = spKmpSearch->Run();
+					for (const auto & result : searchResults) {
+						cout << filePathOutput << "(" << result.position << "): " << result.prefix << "..." << result.sufix << "\n";
+					}
+				}
 			}
 			if (spFileChunkNext) {
 				// process th 

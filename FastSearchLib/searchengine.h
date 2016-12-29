@@ -3,11 +3,15 @@
 #include "searchengine_intf.h"
 #include "filechunk.h"
 #include "kmplps.h"
+#include "chunkwrapper.h"
+#include "kmpsearch.h"
 
 class CSearchEngine 
 	: public ISearchEngine
 	, protected CFileChunk::Factory
+	, protected CChunkWrapper::Factory
 	, protected CKmpLps::Factory
+	, protected CKmpSearch::Factory
 {
 public:
 	// Initialize search engine class
@@ -25,7 +29,8 @@ public:
 	// this struct is used for creating object.
 	struct Factory {
 		/* Creates instance of CSearchEngine object
-		param[out] spSearchEngine instance of CSearchEngine
+		\param[out] spSearchEngine instance of CSearchEngine
+		\param[in] pattern search pattern
 		*/
 		virtual void CreateSearchEngine(shared_ptr<ISearchEngine> & spSearchEngine, const string & pattern);
 	};

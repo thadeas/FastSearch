@@ -18,15 +18,20 @@ void CFileChunk::Initialize(vector<char> & buffer, size_t bufferSize, size_t buf
 	m_bufferOffset = bufferOffset;
 }
 
-size_t CFileChunk::Size()
+size_t CFileChunk::FileOffset() const
+{
+	return m_bufferOffset;
+}
+
+size_t CFileChunk::Size() const
 {
 	return m_bufferSize;
 }
 
-char CFileChunk::operator[](size_t index)
+char CFileChunk::operator[](long index) const
 {
-	if (index < 0 || index >= m_bufferSize) {
-		return '\0';
+	if (index < 0 || index >= (long)m_bufferSize) {
+		return INVALID_BUFFER_CHARACTER;
 	}
 	else {
 		return m_buffer[index];

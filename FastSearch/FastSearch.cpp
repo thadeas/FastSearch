@@ -5,6 +5,7 @@
 #include "application.h"
 #include <memory>
 #include <stdlib.h>
+#include <iostream>
 
 using namespace std;
 
@@ -16,12 +17,10 @@ int main(int argc, char* argv[])
 	}
 	catch (...) {
 		// operation failed
+		cout << "ERROR: Fast search failed.\n";
 		return EXIT_FAILURE;
 	}
 	
-
-
-
     return EXIT_SUCCESS;
 }
 
