@@ -13,9 +13,9 @@ public:
 	// \param[in] spChunkPrev Previous chunk in file.
 	// \param[in] spChunkCurrent Current chunk in file.
 	// \param[in] spChunkNext Next chunk in file.
-	explicit CChunkWrapper(shared_ptr<IFileChunk> & spChunkPrev,
-		shared_ptr<IFileChunk> & spChunkCurrent,
-		shared_ptr<IFileChunk> & spChunkNext);
+	explicit CChunkWrapper(shared_ptr<IFileChunk> spChunkPrev,
+		shared_ptr<IFileChunk> spChunkCurrent,
+		shared_ptr<IFileChunk> spChunkNext);
 
 public:
 	// \copydoc IChunkWrapper::FileOffset
@@ -49,8 +49,8 @@ public:
 		\param[in] spChunkNext Next chunk in file
 		*/
 		virtual void CreateChunkWrapper(shared_ptr<IChunkWrapper> & spChunkWrapper,
-			shared_ptr<IFileChunk> & spChunkPrev,
-			shared_ptr<IFileChunk> & spChunkCurrent,
-			shared_ptr<IFileChunk> & spChunkNext);
+			shared_ptr<IFileChunk> spChunkPrev,
+			shared_ptr<IFileChunk> spChunkCurrent,
+			shared_ptr<IFileChunk> spChunkNext);
 	};
 };

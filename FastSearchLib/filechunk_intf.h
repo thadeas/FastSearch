@@ -3,11 +3,13 @@
 
 using namespace std;
 
-/* this contain one part (buffer) of the file which is processed by a single thread
-
+/* this contains one part (buffer) of the file which is processed by a single thread
 */
 class IFileChunk
 {
+public:
+	virtual ~IFileChunk() {}
+
 public:
 	// get offset of the chunk buffer in the file
 	virtual size_t FileOffset() const = 0;

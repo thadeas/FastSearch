@@ -4,10 +4,13 @@
 using namespace std;
 
 /*
- This class parse command line input and return required values
+ This class parse command line and do basic checks on it
 */
 class ICmdParser
 {
+public:
+	virtual ~ICmdParser() {}
+
 public:
 	// returns path parsed and validated from the command line
 	virtual wstring GetSearchPath() = 0;

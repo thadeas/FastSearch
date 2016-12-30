@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include <future>
 #include "searchengine_intf.h"
 #include "filechunk.h"
 #include "kmplps.h"
@@ -21,9 +22,23 @@ public:
 	// \copydoc ISearchEngine::Search
 	void Search(const wstring & filePath) override;
 
+	void PrintResultsToOutput(future<IKmpSearch::TSearchResults> &searchResults, wstring fileName);
+
 protected:
 	// get full path to the file and separate file name (also it coverts wstring to string)
 	wstring GetFileName(const wstring& filePath);
+
+	// method move chunks shared pointers from next -> current -> prev -> delete()
+	void MoveChunks(shared_ptr<IFileChunk> &spFileChunkPrev, shared_ptr<IFileChunk> &spFileChunkCurrent, shared_ptr<IFileChunk> spFileChunkNext);
+
+	// method synchronize threads and send results to standard output
+	// \param[in] futures list of futures
+	// \param[in] filename currently processed file
+	void SynchronizeFuturesIntoOutput(vector<future<IKmpSearch::TSearchResults>> & futures, const wstring & fileName);
+
+	// process the parallel search and release unused buffer
+	// param[in] pBuffer pointer to buffer
+	IKmpSearch::TSearchResults SearchTask(IChunkWrapper * pBuffer);
 
 protected:
 	string m_pattern;    // pattern to be searched

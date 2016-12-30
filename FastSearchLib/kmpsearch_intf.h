@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "chunkwrapper_intf.h"
 
 using namespace std;
 
@@ -8,6 +9,10 @@ using namespace std;
 class IKmpSearch 
 {
 public:
+	virtual ~IKmpSearch() {}
+
+public:
+	// this structure holds results form the search
 	struct SSearchResult {
 		size_t position;   // position of the search
 		string prefix;     // prefix before the search
@@ -17,5 +22,7 @@ public:
 	// results of the search from buffer
 	using TSearchResults = vector<IKmpSearch::SSearchResult>;
 
-	virtual vector<SSearchResult> Run() = 0;
+	// Run KMP search over buffer
+	// \param[in] pBuffer weak pointer to buffer (chunk wrapper) from the file (based on file chunks)
+	virtual vector<SSearchResult> Process(const IChunkWrapper * const pBuffer) = 0;
 };

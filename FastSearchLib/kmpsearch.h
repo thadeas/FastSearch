@@ -14,21 +14,22 @@ public:
 	// constructor
 	// \params[in] pattern Pattern to be searched in file
 	// \params[in] lps longest proper prefix which is also suffix (used by KMP - preprocessed from pattern)
-	// \params[in] buffer buffer from the file (based on file chunks)
-	explicit CKmpSearch(const string & pattern, const TKmpLps & lps, const shared_ptr<IChunkWrapper> & spBuffer);
+	explicit CKmpSearch(const string & pattern, const TKmpLps & lps);
 
 public:
-	// \copydoc IKmpSearch::Run
-	TSearchResults Run() override;
+	// \copydoc IKmpSearch::Process
+	TSearchResults Process(const IChunkWrapper * const pBuffer) override;
 
 protected:
 	// fill sufix in result
 	// \param[in] patternBufBegin Position of the first character of searched pattern in buffer.
-	string GetPrefix(long patternBufBegin);
+	// \param[in] pBuffer weak pointer to buffer
+	string GetPrefix(const IChunkWrapper * const pBuffer, long patternBufBegin);
 
 	// fill sufix in result
 	// \param[in] patternBufEnd Position of the last character of searched pattern in buffer.
-	string GetSufix(long patternBufEnd);
+	// \param[in] pBuffer weak pointer to buffer
+	string GetSufix(const IChunkWrapper * const pBuffer, long patternBufEnd);
 
 	// detects special characters (\t or \n)
 	// \param[in] ch character to be replaced
@@ -43,7 +44,6 @@ protected:
 protected:
 	const TKmpLps & m_lps;                       // preprocessed LPS
 	const string & m_pattern;                    // pattern to be searched
-	const shared_ptr<IChunkWrapper> m_spBuffer;  // buffer
 
 public:
 	// this struct is used for creating object.
@@ -56,7 +56,6 @@ public:
 		*/
 		virtual void CreateKmpSearch(shared_ptr<IKmpSearch> & spKmpSearch,
 			const string & pattern,
-			const TKmpLps & lps,
-			const shared_ptr<IChunkWrapper> & spBuffer);
+			const TKmpLps & lps);
 	};
 };

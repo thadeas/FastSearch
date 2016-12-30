@@ -4,7 +4,7 @@
 using namespace std;
 
 CFileChunk::CFileChunk()
-	: m_buffer(MAX_CHUNK_SIZE, 0)
+	: m_buffer(CHUNK_SIZE, 0)
 	, m_bufferSize(0)
 {
 

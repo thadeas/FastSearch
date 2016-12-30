@@ -9,6 +9,8 @@ using namespace std;
 */
 class IChunkWrapper {
 public:
+	virtual ~IChunkWrapper() {}
+public:
 	// offset of the buffer in the file
 	virtual size_t FileOffset() const = 0;
 

@@ -3,66 +3,73 @@
 
 using namespace std;
 
-CKmpSearch::CKmpSearch(const string & pattern, const TKmpLps & lps, const shared_ptr<IChunkWrapper> & spBuffer)
+CKmpSearch::CKmpSearch(const string & pattern, const TKmpLps & lps)
 	: m_pattern(pattern)
 	, m_lps(lps)
-	, m_spBuffer(spBuffer)
 {
 
 }
 
-IKmpSearch::TSearchResults CKmpSearch::Run()
+IKmpSearch::TSearchResults CKmpSearch::Process(const IChunkWrapper * const pBuffer)
 {
+	if (pBuffer == nullptr) {
+		throw invalid_argument("KMP search receive nullptr buffer.");
+#ifdef _DEBUG
+		assert(false);
+#endif
+	}
+
 	IKmpSearch::TSearchResults results;
 
-	size_t bufferLength = m_spBuffer->Size();
-	if (!m_spBuffer->IsLast()) {   
+	size_t bufferLength = pBuffer->Size();
+	if (!pBuffer->IsLast()) {   
 		// if the buffer is not the last one in the file we must search inside next buffer up to the pattern length
 		bufferLength += m_pattern.size() - 1;
 	}
 	
 
-	size_t i = 0;  // index for buffer[]
-	size_t j = 0;  // index for m_patter[]
-	while (i < bufferLength)
+	size_t bufIndex = 0;  // index for buffer[]
+	size_t patIndex = 0;  // index for m_patter[]
+	while (bufIndex < bufferLength)
 	{
-		if (m_pattern[j] == m_spBuffer->operator[](i))
+		if (m_pattern[patIndex] == pBuffer->operator[](bufIndex))
 		{
-			j++;
-			i++;
+			patIndex++;
+			bufIndex++;
 		}
 
-		if (j == m_lps.size())
+		if (patIndex == m_lps.size())
 		{
-			// Found pattern
+			// Pattern found
 			IKmpSearch::SSearchResult result;
-			result.position = m_spBuffer->FileOffset() + i - j;
-			result.prefix = GetPrefix(i - j);
-			result.sufix = GetSufix(i);
+			result.position = pBuffer->FileOffset() + bufIndex - patIndex;
+			result.prefix = GetPrefix(pBuffer, bufIndex - patIndex);
+			result.sufix = GetSufix(pBuffer, bufIndex);
 			results.push_back(result);
-			j = m_lps[j - 1];
+			patIndex = m_lps[patIndex - 1];
 			
 		}
 
-		// mismatch after j matches
-		else if (i < bufferLength && m_pattern[j] != m_spBuffer->operator[](i))
-		{
-			// Do not match m_lps[0..m_lps[j-1]] characters,
+		// mismatch after patIndex matches
+		else if (bufIndex < bufferLength && m_pattern[patIndex] != pBuffer->operator[](bufIndex))	{
+			// Do not match m_lps[0..m_lps[patIndex-1]] characters,
 			// they will match anyway
-			if (j != 0)
-				j = m_lps[j - 1];
-			else
-				i = i + 1;
+			if (patIndex != 0) {
+				patIndex = m_lps[patIndex - 1];
+			}
+			else {
+				bufIndex = bufIndex + 1;
+			}
 		}
 	}
 	return results;
 }
 
-string CKmpSearch::GetPrefix(long patternBufBegin)
+string CKmpSearch::GetPrefix(const IChunkWrapper * const pBuffer, long patternBufBegin)
 {
 	string prefix;
 	for (long index = -1; index > -PATTERN_PREFIX_LENGTH -1; index--) {
-		char ch = m_spBuffer->operator[](patternBufBegin + index);
+		char ch = pBuffer->operator[](patternBufBegin + index);
 		if (ch == INVALID_BUFFER_CHARACTER) {
 			break;
 		} else {
@@ -78,11 +85,11 @@ string CKmpSearch::GetPrefix(long patternBufBegin)
 }
 
 
-std::string CKmpSearch::GetSufix(long patternBufEnd)
+std::string CKmpSearch::GetSufix(const IChunkWrapper * const pBuffer, long patternBufEnd)
 {
 	string sufix;
-	for (long index = 1; index <= PATTERN_SUFIX_LENGTH; index++) {
-		char ch = m_spBuffer->operator[](patternBufEnd + index);
+	for (long index = 0; index < PATTERN_SUFIX_LENGTH; index++) {
+		char ch = pBuffer->operator[](patternBufEnd + index);
 		if (ch == INVALID_BUFFER_CHARACTER) {
 			break;
 		}
@@ -121,8 +128,8 @@ string CKmpSearch::TransformSpecialCharacter(char ch)
 	return retChar;
 }
 
-void CKmpSearch::Factory::CreateKmpSearch(shared_ptr<IKmpSearch>& spKmpSearch, const string & pattern, const TKmpLps & lps, const shared_ptr<IChunkWrapper>& spBuffer)
+void CKmpSearch::Factory::CreateKmpSearch(shared_ptr<IKmpSearch>& spKmpSearch, const string & pattern, const TKmpLps & lps)
 {
-	shared_ptr<CKmpSearch> spImpl = make_shared<CKmpSearch>(pattern, lps, spBuffer);
+	shared_ptr<CKmpSearch> spImpl = make_shared<CKmpSearch>(pattern, lps);
 	spKmpSearch = spImpl;
 }

@@ -13,10 +13,9 @@ static const size_t MAXIMUM_THREADS = 10;                 // maximum threads to 
 static const wchar_t PATH_SEPARATOR = L'\\';              // UNC path separator
 
 
-														  // size of chunk read from the input (if possible)
-														  // this is just a magic number - this only have to be longer then pattern 
-														  // (otherwise search algorithm must be changed in read from buffer (chunk) part)
-const long MAX_CHUNK_SIZE = (PATTERN_PREFIX_LENGTH + MAXIMUM_PATTERN_LENGTH + PATTERN_SUFIX_LENGTH) * 10;
+// size of chunk read from the input (if possible)
+// this is just a magic number - this only have to be longer then pattern (otherwise search algorithm must be changed in read from buffer (chunk) part)
+const long CHUNK_SIZE = 1000;
 
 static const char INVALID_BUFFER_CHARACTER = '\0';        // invalid buffer character
 

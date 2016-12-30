@@ -3,9 +3,9 @@
 
 using namespace std;
 
-CChunkWrapper::CChunkWrapper(shared_ptr<IFileChunk>& spChunkPrev,
-	shared_ptr<IFileChunk>& spChunkCurrent,
-	shared_ptr<IFileChunk>& spChunkNext)
+CChunkWrapper::CChunkWrapper(shared_ptr<IFileChunk> spChunkPrev,
+	shared_ptr<IFileChunk> spChunkCurrent,
+	shared_ptr<IFileChunk> spChunkNext)
 	: m_spChunkPrev(spChunkPrev)
 	, m_spChunkCurrent(spChunkCurrent)
 	, m_spChunkNext(spChunkNext)
@@ -29,7 +29,7 @@ char CChunkWrapper::operator[](long index) const
 		return m_spChunkCurrent->operator[](index);
 	}
 	else if (index >= m_bufferSize && m_spChunkNext != nullptr) {
-		return m_spChunkNext->operator[](index + 1 - m_bufferSize);
+		return m_spChunkNext->operator[](index - m_bufferSize);
 	}
 	else if (index < 0 && m_spChunkPrev != nullptr) {
 		return m_spChunkPrev->operator[](m_spChunkPrev->Size() + index);
@@ -50,7 +50,7 @@ bool CChunkWrapper::IsLast() const
 	return m_spChunkNext == nullptr;
 }
 
-void CChunkWrapper::Factory::CreateChunkWrapper(shared_ptr<IChunkWrapper>& spChunkWrapper, shared_ptr<IFileChunk>& spChunkPrev, shared_ptr<IFileChunk>& spChunkCurrent, shared_ptr<IFileChunk>& spChunkNext)
+void CChunkWrapper::Factory::CreateChunkWrapper(shared_ptr<IChunkWrapper>& spChunkWrapper, shared_ptr<IFileChunk> spChunkPrev, shared_ptr<IFileChunk> spChunkCurrent, shared_ptr<IFileChunk> spChunkNext)
 {
 	shared_ptr<CChunkWrapper> spImpl = make_shared<CChunkWrapper>(spChunkPrev, spChunkCurrent, spChunkNext);
 	spChunkWrapper = spImpl;

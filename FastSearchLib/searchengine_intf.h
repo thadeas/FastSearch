@@ -3,7 +3,12 @@
 
 using namespace std;
 
+/* This interface search for pattern inside file
+*/
 class ISearchEngine {
+public:
+	virtual ~ISearchEngine() {}
+
 public:
 
 	/* Search for all patterns in file
