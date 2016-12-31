@@ -1,36 +1,36 @@
 #pragma once
 #include "stdafx.h"
-#include "chunkwrapper_intf.h"
+#include "filebuffer_intf.h"
 #include "filechunk_intf.h"
 
 using namespace std;
 
-class CChunkWrapper 
-	: public IChunkWrapper
+class CFileBuffer 
+	: public IFileBuffer
 {
 public:
 	// constructor
 	// \param[in] spChunkPrev Previous chunk in file.
 	// \param[in] spChunkCurrent Current chunk in file.
 	// \param[in] spChunkNext Next chunk in file.
-	explicit CChunkWrapper(shared_ptr<IFileChunk> spChunkPrev,
+	explicit CFileBuffer(shared_ptr<IFileChunk> spChunkPrev,
 		shared_ptr<IFileChunk> spChunkCurrent,
 		shared_ptr<IFileChunk> spChunkNext);
 
 public:
-	// \copydoc IChunkWrapper::FileOffset
+	// \copydoc IFileBuffer::FileOffset
 	size_t FileOffset() const override;
 
-	// \copydoc IChunkWrapper::Size
+	// \copydoc IFileBuffer::Size
 	size_t Size() const override;
 
-	// \copydoc IChunkWrapper::operator[]
+	// \copydoc IFileBuffer::operator[]
 	char operator[] (long index) const override;
 
-	// \copydoc IChunkWrapper::IsFirst
+	// \copydoc IFileBuffer::IsFirst
 	bool IsFirst() const override;
 
-	// \copydoc IChunkWrapper::IsLast
+	// \copydoc IFileBuffer::IsLast
 	bool IsLast() const override;
 
 protected:
@@ -42,13 +42,13 @@ protected:
 public:
 	// this struct is used for creating object.
 	struct Factory {
-		/* Creates instance of CChunkWrapper object
-		\param[out] spFileManager instance of CChunkWrapper
+		/* Creates instance of CFileBuffer object
+		\param[out] spFileBuffer instance of CFileBuffer
 		\param[in] spChunkPrev Previous chunk in file.
 		\param[in] spChunkCurrent Current chunk in file.
 		\param[in] spChunkNext Next chunk in file
 		*/
-		virtual void CreateChunkWrapper(shared_ptr<IChunkWrapper> & spChunkWrapper,
+		virtual void CreateFileBuffer(shared_ptr<IFileBuffer> & spFileBuffer,
 			shared_ptr<IFileChunk> spChunkPrev,
 			shared_ptr<IFileChunk> spChunkCurrent,
 			shared_ptr<IFileChunk> spChunkNext);

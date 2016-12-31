@@ -5,6 +5,13 @@ using namespace std;
 
 TKmpLps CKmpLps::Compute(const string & pattern)
 {
+	if (pattern.empty()) {
+		throw invalid_argument("KMP LPS receive empty pattern.");
+#ifdef _DEBUG
+		assert(false);
+#endif
+	}
+
 	// create lps[] that will hold the longest prefix suffix
 	TKmpLps lps(pattern.size(), 0);
 

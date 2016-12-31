@@ -7,9 +7,9 @@ using namespace std;
 /* this interface provides access to the buffer on the relative position in the file (wraps one file chunk). 
    Buffer can get characters from the chunks next to current chunk. So chunk[-3] or chunk[chunk.Size() + 2] is valid and return value.
 */
-class IChunkWrapper {
+class IFileBuffer {
 public:
-	virtual ~IChunkWrapper() {}
+	virtual ~IFileBuffer() {}
 public:
 	// offset of the buffer in the file
 	virtual size_t FileOffset() const = 0;

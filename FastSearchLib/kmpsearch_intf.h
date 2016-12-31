@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "chunkwrapper_intf.h"
+#include "filebuffer_intf.h"
 
 using namespace std;
 
@@ -24,5 +24,5 @@ public:
 
 	// Run KMP search over buffer
 	// \param[in] pBuffer weak pointer to buffer (chunk wrapper) from the file (based on file chunks)
-	virtual vector<SSearchResult> Process(const IChunkWrapper * const pBuffer) = 0;
+	virtual vector<SSearchResult> Process(const IFileBuffer * const pBuffer) = 0;
 };

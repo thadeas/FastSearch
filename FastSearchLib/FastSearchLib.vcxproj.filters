@@ -84,17 +84,17 @@
     <ClInclude Include="kmplps_intf.h">
       <Filter>KmpSearch</Filter>
     </ClInclude>
-    <ClInclude Include="chunkwrapper.h">
-      <Filter>FileChunk</Filter>
-    </ClInclude>
-    <ClInclude Include="chunkwrapper_intf.h">
-      <Filter>FileChunk</Filter>
-    </ClInclude>
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="application.h">
       <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="filebuffer_intf.h">
+      <Filter>FileChunk</Filter>
+    </ClInclude>
+    <ClInclude Include="filebuffer.h">
+      <Filter>FileChunk</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,11 +119,11 @@
     <ClCompile Include="kmplps.cpp">
       <Filter>KmpSearch</Filter>
     </ClCompile>
-    <ClCompile Include="chunkwrapper.cpp">
-      <Filter>FileChunk</Filter>
-    </ClCompile>
     <ClCompile Include="application.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="filebuffer.cpp">
+      <Filter>FileChunk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

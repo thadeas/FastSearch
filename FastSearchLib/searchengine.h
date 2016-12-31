@@ -4,13 +4,13 @@
 #include "searchengine_intf.h"
 #include "filechunk.h"
 #include "kmplps.h"
-#include "chunkwrapper.h"
+#include "filebuffer.h"
 #include "kmpsearch.h"
 
 class CSearchEngine 
 	: public ISearchEngine
 	, protected CFileChunk::Factory
-	, protected CChunkWrapper::Factory
+	, protected CFileBuffer::Factory
 	, protected CKmpLps::Factory
 	, protected CKmpSearch::Factory
 {
@@ -38,7 +38,7 @@ protected:
 
 	// process the parallel search and release unused buffer
 	// param[in] pBuffer pointer to buffer
-	IKmpSearch::TSearchResults SearchTask(IChunkWrapper * pBuffer);
+	IKmpSearch::TSearchResults SearchTask(IFileBuffer * pBuffer);
 
 protected:
 	string m_pattern;    // pattern to be searched

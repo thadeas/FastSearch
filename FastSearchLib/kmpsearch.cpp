@@ -10,7 +10,7 @@ CKmpSearch::CKmpSearch(const string & pattern, const TKmpLps & lps)
 
 }
 
-IKmpSearch::TSearchResults CKmpSearch::Process(const IChunkWrapper * const pBuffer)
+IKmpSearch::TSearchResults CKmpSearch::Process(const IFileBuffer * const pBuffer)
 {
 	if (pBuffer == nullptr) {
 		throw invalid_argument("KMP search receive nullptr buffer.");
@@ -65,7 +65,7 @@ IKmpSearch::TSearchResults CKmpSearch::Process(const IChunkWrapper * const pBuff
 	return results;
 }
 
-string CKmpSearch::GetPrefix(const IChunkWrapper * const pBuffer, long patternBufBegin)
+string CKmpSearch::GetPrefix(const IFileBuffer * const pBuffer, long patternBufBegin)
 {
 	string prefix;
 	for (long index = -1; index > -PATTERN_PREFIX_LENGTH -1; index--) {
@@ -85,7 +85,7 @@ string CKmpSearch::GetPrefix(const IChunkWrapper * const pBuffer, long patternBu
 }
 
 
-std::string CKmpSearch::GetSufix(const IChunkWrapper * const pBuffer, long patternBufEnd)
+std::string CKmpSearch::GetSufix(const IFileBuffer * const pBuffer, long patternBufEnd)
 {
 	string sufix;
 	for (long index = 0; index < PATTERN_SUFIX_LENGTH; index++) {

@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "chunkwrapper.h"
+#include "filebuffer.h"
 
 using namespace std;
 
-CChunkWrapper::CChunkWrapper(shared_ptr<IFileChunk> spChunkPrev,
+CFileBuffer::CFileBuffer(shared_ptr<IFileChunk> spChunkPrev,
 	shared_ptr<IFileChunk> spChunkCurrent,
 	shared_ptr<IFileChunk> spChunkNext)
 	: m_spChunkPrev(spChunkPrev)
@@ -13,17 +13,17 @@ CChunkWrapper::CChunkWrapper(shared_ptr<IFileChunk> spChunkPrev,
 {
 }
 
-size_t CChunkWrapper::FileOffset() const
+size_t CFileBuffer::FileOffset() const
 {
 	return m_spChunkCurrent->FileOffset();
 }
 
-size_t CChunkWrapper::Size() const
+size_t CFileBuffer::Size() const
 {
 	return m_spChunkCurrent->Size();
 }
 
-char CChunkWrapper::operator[](long index) const
+char CFileBuffer::operator[](long index) const
 {
 	if (0 <= index && index < m_bufferSize) {
 		return m_spChunkCurrent->operator[](index);
@@ -40,18 +40,18 @@ char CChunkWrapper::operator[](long index) const
 	}
 }
 
-bool CChunkWrapper::IsFirst() const
+bool CFileBuffer::IsFirst() const
 {
 	return m_spChunkPrev == nullptr;
 }
 
-bool CChunkWrapper::IsLast() const
+bool CFileBuffer::IsLast() const
 {
 	return m_spChunkNext == nullptr;
 }
 
-void CChunkWrapper::Factory::CreateChunkWrapper(shared_ptr<IChunkWrapper>& spChunkWrapper, shared_ptr<IFileChunk> spChunkPrev, shared_ptr<IFileChunk> spChunkCurrent, shared_ptr<IFileChunk> spChunkNext)
+void CFileBuffer::Factory::CreateFileBuffer(shared_ptr<IFileBuffer>& spFileBuffer, shared_ptr<IFileChunk> spChunkPrev, shared_ptr<IFileChunk> spChunkCurrent, shared_ptr<IFileChunk> spChunkNext)
 {
-	shared_ptr<CChunkWrapper> spImpl = make_shared<CChunkWrapper>(spChunkPrev, spChunkCurrent, spChunkNext);
-	spChunkWrapper = spImpl;
+	shared_ptr<CFileBuffer> spImpl = make_shared<CFileBuffer>(spChunkPrev, spChunkCurrent, spChunkNext);
+	spFileBuffer = spImpl;
 }

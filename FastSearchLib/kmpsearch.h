@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "kmpsearch_intf.h"
 #include "kmplps_intf.h"
-#include "chunkwrapper_intf.h"
+#include "filebuffer_intf.h"
 
 using namespace std;
 
@@ -18,18 +18,18 @@ public:
 
 public:
 	// \copydoc IKmpSearch::Process
-	TSearchResults Process(const IChunkWrapper * const pBuffer) override;
+	TSearchResults Process(const IFileBuffer * const pBuffer) override;
 
 protected:
 	// fill sufix in result
 	// \param[in] patternBufBegin Position of the first character of searched pattern in buffer.
 	// \param[in] pBuffer weak pointer to buffer
-	string GetPrefix(const IChunkWrapper * const pBuffer, long patternBufBegin);
+	string GetPrefix(const IFileBuffer * const pBuffer, long patternBufBegin);
 
 	// fill sufix in result
 	// \param[in] patternBufEnd Position of the last character of searched pattern in buffer.
 	// \param[in] pBuffer weak pointer to buffer
-	string GetSufix(const IChunkWrapper * const pBuffer, long patternBufEnd);
+	string GetSufix(const IFileBuffer * const pBuffer, long patternBufEnd);
 
 	// detects special characters (\t or \n)
 	// \param[in] ch character to be replaced

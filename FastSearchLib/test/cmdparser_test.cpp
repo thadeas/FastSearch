@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "common.h"
 #include "CppUnitTest.h"
-#include "..\FastSearchLib\cmdparser.h"
+#include "../cmdparser.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;

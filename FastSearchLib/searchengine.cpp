@@ -15,18 +15,6 @@ void CSearchEngine::Initialize(const string & pattern)
 	m_lps = spKmpLps->Compute(pattern);
 }
 
-wstring CSearchEngine::GetFileName(const wstring& filePath)
-{
-	// string filePathStr = wstring_to_string(path);
-	size_t index = filePath.rfind(PATH_SEPARATOR, filePath.size());
-	if (index != wstring::npos) {
-		return filePath.substr(index + 1, filePath.size() - index);
-	}
-	else {
-		return filePath;
-	}
-}
-
 void CSearchEngine::Search(const wstring & filePath)
 {
 	try {
@@ -55,7 +43,7 @@ void CSearchEngine::Search(const wstring & filePath)
 				// Shared pointers are thread safe so we don't need any extra locking to ensure thread-safe chunk release.
 				CreateFileChunk(spFileChunkNext, buffer, (size_t)file.gcount(), (size_t)bufferOffset);
 				if (spFileChunkCurrent) {
-					IChunkWrapper * pBuffer = new CChunkWrapper(spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
+					IFileBuffer * pBuffer = new CFileBuffer(spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
 					// ---------------------------------------
 					// do it in parallel ---------------------
 					// ---------------------------------------
@@ -78,7 +66,7 @@ void CSearchEngine::Search(const wstring & filePath)
 			if (spFileChunkNext) {
 				MoveChunks(spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
 				spFileChunkNext = nullptr;   // there is no chunk on the right
-				IChunkWrapper * pBuffer = new CChunkWrapper(spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
+				IFileBuffer * pBuffer = new CFileBuffer(spFileChunkPrev, spFileChunkCurrent, spFileChunkNext);
 				// do it in parallel
 				futures.push_back( async([this, pBuffer]() { return SearchTask(pBuffer); }));
 			}
@@ -95,7 +83,20 @@ void CSearchEngine::Search(const wstring & filePath)
 
 }
 
-IKmpSearch::TSearchResults CSearchEngine::SearchTask(IChunkWrapper * pBuffer)
+
+wstring CSearchEngine::GetFileName(const wstring& filePath)
+{
+	// string filePathStr = wstring_to_string(path);
+	size_t index = filePath.rfind(PATH_SEPARATOR, filePath.size());
+	if (index != wstring::npos) {
+		return filePath.substr(index + 1, filePath.size() - index);
+	}
+	else {
+		return filePath;
+	}
+}
+
+IKmpSearch::TSearchResults CSearchEngine::SearchTask(IFileBuffer * pBuffer)
 {
 	shared_ptr<IKmpSearch> spKmpSearch;
 	CreateKmpSearch(spKmpSearch, m_pattern, m_lps);

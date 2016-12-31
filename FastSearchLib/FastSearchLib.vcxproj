@@ -127,8 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
-    <ClInclude Include="chunkwrapper.h" />
-    <ClInclude Include="chunkwrapper_intf.h" />
+    <ClInclude Include="filebuffer.h" />
+    <ClInclude Include="filebuffer_intf.h" />
     <ClInclude Include="cmdparser.h" />
     <ClInclude Include="cmdparser_intf.h" />
     <ClInclude Include="common.h" />
@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
-    <ClCompile Include="chunkwrapper.cpp" />
+    <ClCompile Include="filebuffer.cpp" />
     <ClCompile Include="cmdparser.cpp" />
     <ClCompile Include="filechunk.cpp" />
     <ClCompile Include="filemanager.cpp" />
