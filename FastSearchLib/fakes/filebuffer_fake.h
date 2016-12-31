@@ -35,7 +35,7 @@ public:
 			
 		}
 		else if (index < 0 && !m_bufferPrev.empty()) {
-			long prevIndex = index - m_bufferCurrent.size();
+			long prevIndex = index + m_bufferPrev.size();
 			if (0 <= prevIndex && prevIndex < (long)m_bufferPrev.size()) {
 				return m_bufferPrev[prevIndex];
 			}
