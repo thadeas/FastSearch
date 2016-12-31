@@ -1,0 +1,16 @@
+test_single_char2.txt(000000000000): ...aaa
+test_single_char2.txt(000000000001): a...aaa
+test_single_char2.txt(000000000002): aa...aaa
+test_single_char2.txt(000000000003): aaa...aaa
+test_single_char2.txt(000000000004): aaa...aaa
+test_single_char2.txt(000000000005): aaa...aaa
+test_single_char2.txt(000000000006): aaa...aaa
+test_single_char2.txt(000000000007): aaa...aaa
+test_single_char2.txt(000000000008): aaa...aaa
+test_single_char2.txt(000000000009): aaa...aaa
+test_single_char2.txt(000000000010): aaa...aaa
+test_single_char2.txt(000000000011): aaa...aaa
+test_single_char2.txt(000000000012): aaa...aaa
+test_single_char2.txt(000000000013): aaa...aa
+test_single_char2.txt(000000000014): aaa...a
+test_single_char2.txt(000000000015): aaa...

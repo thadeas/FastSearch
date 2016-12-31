@@ -1,0 +1,14 @@
+test_patern_aaa.txt(000000000000): ...aaa
+test_patern_aaa.txt(000000000001): a...aaa
+test_patern_aaa.txt(000000000002): aa...aaa
+test_patern_aaa.txt(000000000003): aaa...aaa
+test_patern_aaa.txt(000000000004): aaa...aaa
+test_patern_aaa.txt(000000000005): aaa...aaa
+test_patern_aaa.txt(000000000006): aaa...aaa
+test_patern_aaa.txt(000000000007): aaa...aaa
+test_patern_aaa.txt(000000000008): aaa...aaa
+test_patern_aaa.txt(000000000009): aaa...aaa
+test_patern_aaa.txt(000000000010): aaa...aaa
+test_patern_aaa.txt(000000000011): aaa...aa
+test_patern_aaa.txt(000000000012): aaa...a
+test_patern_aaa.txt(000000000013): aaa...
