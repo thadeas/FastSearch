@@ -12,11 +12,11 @@ public:
 	virtual ~IFSExecutor() {}
 public:
 
-	// execute callback class for files in file system
+	// callback class for executing operation on files in file system
 	class IExecuteOperation {
 	public:
 		// callback method for execute operation on single file
-		virtual void Execute(const wstring & filePath) = 0;
+		virtual void ExecuteOn(const wstring & filePath) = 0;
 	};
 
 

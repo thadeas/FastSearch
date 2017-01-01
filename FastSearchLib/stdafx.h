@@ -27,6 +27,7 @@ inline std::wstring string_to_wstring(const std::string& text) {
 	return std::wstring(text.begin(), text.end());
 }
 
+// convert wstring to string
 inline std::string wstring_to_string(const std::wstring& text) {
 	return std::string(text.begin(), text.end());
 }

@@ -26,12 +26,15 @@ size_t CFileBuffer::Size() const
 char CFileBuffer::operator[](long index) const
 {
 	if (0 <= index && index < m_bufferSize) {
+		// return char from current chunk
 		return m_spChunkCurrent->operator[](index);
 	}
 	else if (index >= m_bufferSize && m_spChunkNext != nullptr) {
+		// return char from next chunk
 		return m_spChunkNext->operator[](index - m_bufferSize);
 	}
 	else if (index < 0 && m_spChunkPrev != nullptr) {
+		// return char from previos chunk
 		return m_spChunkPrev->operator[](m_spChunkPrev->Size() + index);
 	}
 	

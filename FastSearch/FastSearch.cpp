@@ -13,7 +13,9 @@ int main(int argc, char* argv[])
 {	
 	try {
 		auto_ptr<CApplication> spApplication (new CApplication);
+		// initialize application
 		spApplication->Initialize(argc, argv);
+		// run it
 		spApplication->Run();
 	}
 	catch (std::exception& e) {

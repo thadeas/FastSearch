@@ -27,8 +27,8 @@ public:
 	void Run();
 
 protected:
-	// \copydoc IFSExecutor::IExecuteOperation::Execute
-	void Execute(const wstring & filePath) override;
+	// \copydoc IFSExecutor::IExecuteOperation::ExecuteOn
+	void ExecuteOn(const wstring & filePath) override;
 
 protected:
 	shared_ptr<IFSExecutor> m_spFSExecutor;        // file system executor

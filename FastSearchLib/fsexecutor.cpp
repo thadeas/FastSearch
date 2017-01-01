@@ -30,7 +30,7 @@ void CFSExecutor::Execute()
 	}
 	else {
 		// execute callback method on single
-		m_spExecuteOperation->Execute(m_path);
+		m_spExecuteOperation->ExecuteOn(m_path);
 	}
 }
 
@@ -68,7 +68,7 @@ void CFSExecutor::GetSubdirs(vector<wstring>& output, const wstring& path)
 				}
 				else {
 					// execute callback method on file
-					m_spExecuteOperation->Execute(path + PATH_SEPARATOR + findfiledata.cFileName);
+					m_spExecuteOperation->ExecuteOn(path + PATH_SEPARATOR + findfiledata.cFileName);
 				}
 			}
 		} while (FindNextFile(hFind, &findfiledata) != 0);
