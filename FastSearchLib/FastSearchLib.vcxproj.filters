@@ -48,12 +48,6 @@
     <ClInclude Include="cmdparser_intf.h">
       <Filter>CmdParser</Filter>
     </ClInclude>
-    <ClInclude Include="filemanager_intf.h">
-      <Filter>FileManager</Filter>
-    </ClInclude>
-    <ClInclude Include="filemanager.h">
-      <Filter>FileManager</Filter>
-    </ClInclude>
     <ClInclude Include="searchengine_intf.h">
       <Filter>SearchEngine</Filter>
     </ClInclude>
@@ -90,6 +84,12 @@
     <ClInclude Include="filebuffer.h">
       <Filter>FileChunk</Filter>
     </ClInclude>
+    <ClInclude Include="fsexecutor_intf.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="fsexecutor.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -97,9 +97,6 @@
     </ClCompile>
     <ClCompile Include="cmdparser.cpp">
       <Filter>CmdParser</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanager.cpp">
-      <Filter>FileManager</Filter>
     </ClCompile>
     <ClCompile Include="searchengine.cpp">
       <Filter>SearchEngine</Filter>
@@ -118,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="filebuffer.cpp">
       <Filter>FileChunk</Filter>
+    </ClCompile>
+    <ClCompile Include="fsexecutor.cpp">
+      <Filter>FileManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

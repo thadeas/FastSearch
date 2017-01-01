@@ -1,26 +1,32 @@
 #pragma once
 #include "stdafx.h"
-#include "filemanager_intf.h"
+#include "fsexecutor_intf.h"
 
 using namespace std;
 
-class CFileManager
-	: public IFileManager
+class CFSExecutor
+	: public IFSExecutor
 {
 public:
-	CFileManager();
+	CFSExecutor();
 
+	// Initialize class
+	// \param[in] path Path to the file or directory
 	void Initialize(const wstring & path);
 
-	// \copydoc IFileManager::GetNextFile
-	bool GetNextFile(wstring & path) override;
+public:
+
+	// \copydoc IFSExecutor::Execute
+	void Execute() override;
+
+	// \copydoc IFSExecutor::RegisterCallback
+	void RegisterCallback(IExecuteOperation * executeOperation) override;
 
 protected:
-
 	// Gets a list of subdirectories under a specified path
 	// \param[out] output Empty vector to be filled with result
 	// \param[in]  path   Input path, may be a relative path from working dir
-	void CFileManager::GetSubdirs(vector<wstring>& output, const wstring& path);
+	void CFSExecutor::GetSubdirs(vector<wstring>& output, const wstring& path);
 
 	// Gets a list of subdirectory and their subdirs under a specified path
 	// \param[out] output Empty vector to be filled with result
@@ -30,16 +36,16 @@ protected:
 	void GetSubdirsRecursive(vector<wstring>& output, const wstring& path, const wstring& prependStr);
 
 protected:
-	size_t          m_pathsIndex = 0;   // current file path
-	vector<wstring> m_paths;    // vector with the file paths
+	wstring m_path;                                        // path to the file or directory
+	IExecuteOperation * m_spExecuteOperation = nullptr;    // execute operation callback
 
 public:
 	// this struct is used for creating object.
 	struct Factory {
-		/* Creates instance of CFileManager object
-		param[out] spFileManager instance of CFileManager
-		param[in] path Path to be searched for files.
+		/* Creates instance of CFSExecutor object
+		\param[out] spFSExecutor instance of CFSExecutor
+		\param[in] path Path to dir of file to be searched
 		*/
-		virtual void CreateFileManager(shared_ptr<IFileManager> & spFileManager, const wstring & path);
+		virtual void CreateFSExecutor(shared_ptr<IFSExecutor> & spFSExecutor, const wstring & path);
 	};
 };

@@ -1,55 +1,54 @@
 #include "stdafx.h"
-#include "filemanager.h"
+#include "fsexecutor.h"
 #include <windows.h>
 #include <shlwapi.h>
 
 using namespace std;
 
-CFileManager::CFileManager()
-	: m_pathsIndex(0)
+CFSExecutor::CFSExecutor()
 {
 
 }
 
-void CFileManager::Initialize(const wstring & path)
+void CFSExecutor::Initialize(const wstring & path)
 {
 	if (!PathFileExists(path.c_str())) {
 		stringstream message;
 		message << "Received invalid path (" << wstring_to_string(path) << ").\n";
 		throw invalid_argument(message.str());
 	}
+	m_path = path;
+}
+
+void CFSExecutor::Execute()
+{
+	DWORD atributes = GetFileAttributes(m_path.c_str());
+	if (atributes & FILE_ATTRIBUTE_DIRECTORY) {
+		// create directory path
+		vector<wstring> rootLvl;
+		GetSubdirsRecursive(rootLvl, m_path, wstring());
+	}
 	else {
-		DWORD atributes = GetFileAttributes(path.c_str());
-		if (atributes & FILE_ATTRIBUTE_DIRECTORY) {
-			// create directory path
-			GetSubdirsRecursive(m_paths, path, wstring());
-		}
-		else {
-			// add file to the output list
-			m_paths.push_back(path);
-		}
+		// execute callback method on single
+		m_spExecuteOperation->Execute(m_path);
 	}
-	m_pathsIndex = 0;
 }
 
-bool CFileManager::GetNextFile(wstring & path)
+
+void CFSExecutor::RegisterCallback(IExecuteOperation * executeOperation)
 {
-	if (m_pathsIndex < m_paths.size()) {
-		path.swap(m_paths[m_pathsIndex++]);
-		return true;
-	}
-	return false;   // no result
+	m_spExecuteOperation = executeOperation;
 }
 
-void CFileManager::Factory::CreateFileManager(shared_ptr<IFileManager> & spFileManager, const wstring & path)
+void CFSExecutor::Factory::CreateFSExecutor(shared_ptr<IFSExecutor> & spFsExecutor, const wstring & path)
 {
-	shared_ptr<CFileManager> spImpl = make_shared<CFileManager>();
+	shared_ptr<CFSExecutor> spImpl = make_shared<CFSExecutor>();
 	spImpl->Initialize(path);
-	spFileManager = spImpl;
+	spFsExecutor = spImpl;
 }
 
 
-void CFileManager::GetSubdirs(vector<wstring>& output, const wstring& path)
+void CFSExecutor::GetSubdirs(vector<wstring>& output, const wstring& path)
 {
 	WIN32_FIND_DATA findfiledata;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
@@ -68,14 +67,15 @@ void CFileManager::GetSubdirs(vector<wstring>& output, const wstring& path)
 					output.push_back(findfiledata.cFileName);
 				}
 				else {
-					m_paths.push_back(path + PATH_SEPARATOR + findfiledata.cFileName);
+					// execute callback method on file
+					m_spExecuteOperation->Execute(path + PATH_SEPARATOR + findfiledata.cFileName);
 				}
 			}
 		} while (FindNextFile(hFind, &findfiledata) != 0);
 	}
 }
 
-void CFileManager::GetSubdirsRecursive(vector<wstring>& output, const wstring& path, const wstring& prependStr)
+void CFSExecutor::GetSubdirsRecursive(vector<wstring>& output, const wstring& path, const wstring& prependStr)
 {
 	vector<wstring> firstLvl;
 	GetSubdirs(firstLvl, path);

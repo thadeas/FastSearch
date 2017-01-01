@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
 {	
 	try {
 		auto_ptr<CApplication> spApplication (new CApplication);
-		spApplication->Run(argc, argv);
+		spApplication->Initialize(argc, argv);
+		spApplication->Run();
 	}
 	catch (std::exception& e) {
 		cout << "ERROR: " << e.what();

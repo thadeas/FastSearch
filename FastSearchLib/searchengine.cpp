@@ -77,6 +77,9 @@ void CSearchEngine::Search(const wstring & filePath)
 		}
 
 	}
+	catch (std::exception& e) {
+		wcout << L"ERROR: while reading file '" << filePath << L"'\n" << e.what();
+	}
 	catch (...) {
 		// ToDo: invalid operation on file
 	}
