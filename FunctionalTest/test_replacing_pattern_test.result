@@ -1,0 +1,5 @@
+test_replacing_pattern_test.txt(000000000002): \t\n...\t\nx
+test_replacing_pattern_test.txt(000000000012): \n\n\n...\n\n\n
+test_replacing_pattern_test.txt(000000000022): \t\t\t...\t\t\t
+test_replacing_pattern_test.txt(000000000033): \t\t\t...\n\t\n
+test_replacing_pattern_test.txt(000000000040): \n\t\n...\n\t

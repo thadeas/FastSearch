@@ -1,0 +1,10 @@
+test_overlapse_patern_aabcaabc.txt(000000000004): xyz...aab
+test_overlapse_patern_aabcaabc.txt(000000000008): abc...SEP
+test_overlapse_patern_aabcaabc.txt(000000000019): SEP...SEP
+test_overlapse_patern_aabcaabc.txt(000000000030): SEP...aab
+test_overlapse_patern_aabcaabc.txt(000000000034): abc...aab
+test_overlapse_patern_aabcaabc.txt(000000000038): abc...SEP
+test_overlapse_patern_aabcaabc.txt(000000000052): aaa...aab
+test_overlapse_patern_aabcaabc.txt(000000000056): abc...ccc
+test_overlapse_patern_aabcaabc.txt(000000000070): SEP...aab
+test_overlapse_patern_aabcaabc.txt(000000000074): abc...ijk

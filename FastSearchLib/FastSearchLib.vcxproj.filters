@@ -48,12 +48,6 @@
     <ClInclude Include="cmdparser_intf.h">
       <Filter>CmdParser</Filter>
     </ClInclude>
-    <ClInclude Include="errors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="filemanager_intf.h">
       <Filter>FileManager</Filter>
     </ClInclude>

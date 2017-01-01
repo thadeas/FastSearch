@@ -132,7 +132,6 @@
     <ClInclude Include="cmdparser.h" />
     <ClInclude Include="cmdparser_intf.h" />
     <ClInclude Include="common.h" />
-    <ClInclude Include="errors.h" />
     <ClInclude Include="filechunk.h" />
     <ClInclude Include="filechunk_intf.h" />
     <ClInclude Include="filemanager.h" />
@@ -145,7 +144,6 @@
     <ClInclude Include="searchengine_intf.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />

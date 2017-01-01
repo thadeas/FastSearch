@@ -1,0 +1,3 @@
+test_pattern_128_chars.txt(000000000008): aaa...aaa
+test_pattern_128_chars.txt(000000000141): aaa...ddd
+test_pattern_128_chars.txt(000000000277): dd\n...

@@ -22,7 +22,7 @@ void CCmdParser::Initialize(int argc, char* argv[])
 	// check params
 	if (m_pattern.size() > MAXIMUM_PATTERN_LENGTH) {
 		stringstream message;
-		message << "Pattern '" << m_pattern << " is longer than expected. Max. length is " << MAXIMUM_PATTERN_LENGTH << ".\n";
+		message << "Pattern '" << m_pattern << "' is longer than expected. Max. length is " << MAXIMUM_PATTERN_LENGTH << ".\n";
 		throw invalid_argument(message.str());
 	}
 }

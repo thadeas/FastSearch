@@ -16,11 +16,10 @@
 #include <iomanip>
 #include <memory>
 #include <process.h>
+#include <cstdlib>
 #include <sstream>
 #include <stdio.h>
 #include <tchar.h>
-#include "types.h"
-#include "errors.h"
 #include "common.h"
 
 // convert string to wstring
