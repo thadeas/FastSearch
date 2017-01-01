@@ -74,8 +74,8 @@ void CSearchEngine::Search(const wstring & filePath)
 			SynchronizeFuturesIntoOutput(futures, fileName);
 
 			file.close();
+			wcout.flush();
 		}
-
 	}
 	catch (std::exception& e) {
 		wcout << L"ERROR: while reading file '" << filePath << L"'\n" << e.what();
